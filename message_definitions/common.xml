@@ -4977,5 +4977,26 @@
       <field type="int32_t" name="y">Y coordinate of center point.  Coordinate system depends on frame field: local = x position in meters * 1e4, global = latitude in degrees * 1e7.</field>
       <field type="float" name="z" units="m">Altitude of center point. Coordinate system depends on frame field.</field>
     </message>
+    <message id="13000" name="RAW_IMU_CUSTOM">
+      <!-- This message is work-in-progress and it can therefore change, and should NOT be used in stable production environments -->
+      <description>The raw imu data (1k hz raw data) for the ROS</description>
+       <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude the number.</field>
+      <field type="float" name="xacc" units="m/s/s">X acceleration</field>
+      <field type="float" name="yacc" units="m/s/s">Y acceleration</field>
+      <field type="float" name="zacc" units="m/s/s">Z acceleration</field>
+      <field type="float" name="xgyro" units="rad/s">Angular speed around X axis</field>
+      <field type="float" name="ygyro" units="rad/s">Angular speed around Y axis</field>
+      <field type="float" name="zgyro" units="rad/s">Angular speed around Z axis</field>
+      <field type="float" name="xmag" units="gauss">X Magnetic field</field>
+      <field type="float" name="ymag" units="gauss">Y Magnetic field</field>
+      <field type="float" name="zmag" units="gauss">Z Magnetic field</field>
+      <field type="float" name="abs_pressure" units="mbar">Absolute pressure</field>
+      <field type="float" name="diff_pressure" units="mbar">Differential pressure</field>
+      <field type="float" name="pressure_alt">Altitude calculated from pressure</field>
+      <field type="float" name="temperature" units="degC">Temperature</field>
+      <field type="uint16_t" name="fields_updated" display="bitmask">Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
+      <extensions/>
+      <field type="uint8_t" name="id">Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)</field>
+    </message>
   </messages>
 </mavlink>
